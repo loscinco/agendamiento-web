@@ -8,7 +8,7 @@ declare var $: any;
   styleUrls: ['./agendamiento-modal.component.css']
 })
 export class AgendamientoModalComponent implements OnInit, AfterViewInit {
-
+  response: any;
   constructor() { }
 
   ngOnInit() {
@@ -20,7 +20,8 @@ export class AgendamientoModalComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openModal() {
+  openModal(message:any) {
+    this.response = message;
     $('#citaModal').modal('show');
   }
 

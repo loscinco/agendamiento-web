@@ -1,5 +1,5 @@
-<div class="container">
-    <h2>Agendamiento de Citas</h2>
+<div class="container text-center">
+  <h2>Agendamiento de Citas</h2>
     <form [formGroup]="agendamientoForm" (ngSubmit)="onSubmit(); modal.openModal()">
       <div class="mb-3">
         <label for="nameClient" class="form-label">Nombre</label>
@@ -44,7 +44,7 @@
   
     <div class="mb-3">
         <label for="dateAppointment" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment">
+        <input type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment" [min]="today">
         <div *ngIf="agendamientoForm.get('dateAppointment').invalid && agendamientoForm.get('dateAppointment').touched" class="text-danger">
           La fecha es obligatoria.
         </div>
@@ -57,40 +57,6 @@
           La hora es obligatoria.
         </div>
       </div>
-    <!--
-      
-      <div class="mb-3" *ngIf="agendamientoForm.get('fecha').valid">
-        <label class="form-label">Horario disponible</label>
-        <div class="form-check form-switch" *ngFor="let hora of horas">
-            <input class="form-check-input" type="checkbox" role="switch" id="{{hora}}" >
-            <label class="form-check-label" for="{{hora}}">{{hora}}</label>
-        </div>
-        <div *ngIf="agendamientoForm.get('hora').invalid && agendamientoForm.get('hora').touched" class="text-danger">
-            Debe seleccionar al menos un intervalo de hora.
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Intervalo de Horas</label>
-        <div class="form-check" *ngFor="let hora of horas">
-            <input class="form-check-input" type="checkbox" [value]="hora" formControlName="intervaloHoras">
-            <input type="time" [value]="hora" class="form-control">
-        </div>
-        <div *ngIf="agendamientoForm.get('intervaloHoras').invalid && agendamientoForm.get('intervaloHoras').touched" class="text-danger">
-            Debe seleccionar al menos un intervalo de hora.
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Intervalo de Horas</label>
-        <div class="form-check" *ngFor="let hora of horas">
-            <input class="form-check-input" type="checkbox" [value]="hora" formControlName="intervaloHoras">
-            <label class="form-check-label">
-                {{ hora }}
-            </label>
-        </div>
-        <div *ngIf="agendamientoForm.get('intervaloHoras').invalid && agendamientoForm.get('intervaloHoras').touched" class="text-danger">
-            Debe seleccionar al menos un intervalo de hora.
-        </div>
-    </div>-->
   
       <div class="mb-3">
         <label for="phone" class="form-label">Teléfono</label>

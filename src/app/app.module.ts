@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { AgendamientoComponent } from './agendamiento/agendamiento.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgendamientoModalComponent } from './agendamiento-modal/agendamiento-modal.component';
+import { HeaderComponent } from './header/header.component';
+import { CrearEstablecimientoComponent } from './establecimiento/crear-establecimiento/crear-establecimiento.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgendamientoComponent,
-    AgendamientoModalComponent
+    AgendamientoModalComponent,
+    HeaderComponent,
+    CrearEstablecimientoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AgendamientoServiceService } from '../agendamiento-service.service';
+import { AgendamientoServiceService } from '../services/agendamiento-service.service';
 import { AgendamientoModalComponent } from '../agendamiento-modal/agendamiento-modal.component';
 
 @Component({
@@ -12,9 +12,10 @@ export class AgendamientoComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal: AgendamientoModalComponent;
   agendamientoForm: FormGroup;
   horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-
+  today: string;
   constructor(private fb: FormBuilder, private AgendamientoService : AgendamientoServiceService) {
-    
+    const todayDate = new Date();
+    this.today = todayDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
    }
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class AgendamientoComponent implements OnInit {
       this.AgendamientoService.crearCita(cita).subscribe(
         response => {
           console.log('Cita agendada:', response);
-          this.modal.openModal();
+          this.modal.openModal(response.returnStatus.businessMessage);
         },
         error => {
           console.error('Error al agendar cita:', error);
