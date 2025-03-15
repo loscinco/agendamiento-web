@@ -1,72 +1,94 @@
-<div class="container text-center">
+<div class="container">
   <h2>Agendamiento de Citas</h2>
+  <br/>
     <form [formGroup]="agendamientoForm" (ngSubmit)="onSubmit(); modal.openModal()">
-      <div class="mb-3">
-        <label for="nameClient" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nameClient" formControlName="nameClient" placeholder="Tu nombre">
-        <div *ngIf="agendamientoForm.get('nameClient').invalid && agendamientoForm.get('nameClient').touched" class="text-danger">
-          El nombre es obligatorio y debe tener al menos 3 caracteres.
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="nameClient" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nameClient" formControlName="nameClient" placeholder="Tu nombre">
+            <div *ngIf="agendamientoForm.get('nameClient').invalid && agendamientoForm.get('nameClient').touched" class="text-danger">
+              El nombre es obligatorio y debe tener al menos 3 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            </div>
+            <div *ngIf="agendamientoForm.get('email').invalid && agendamientoForm.get('email').touched" class="text-danger">
+              El email es obligatorio y debe tener un dominio válido (gmail, hotmail, etc).
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
-        <div *ngIf="agendamientoForm.get('email').invalid && agendamientoForm.get('email').touched" class="text-danger">
-          El email es obligatorio y debe tener un dominio válido (gmail, hotmail, etc).
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="dateAppointment" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment" [min]="today">
+            <div *ngIf="agendamientoForm.get('dateAppointment').invalid && agendamientoForm.get('dateAppointment').touched" class="text-danger">
+              La fecha es obligatoria.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Tu teléfono">
+            <div *ngIf="agendamientoForm.get('phone').invalid && agendamientoForm.get('phone').touched" class="text-danger">
+              El teléfono es obligatorio y debe ser un número de 10 dígitos.
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="mb-3">
-        <label for="serviceID" class="form-label">Servicio</label>
-        <select class="form-select" id="serviceID" formControlName="serviceID">
-          <option value="">Seleccione un servicio</option>
-          <option value="1">Barbería</option>
-          <option value="2">Medicina</option>
-          <option value="3">Lavadero de carros</option>
-        </select>
-        <div *ngIf="agendamientoForm.get('serviceID').invalid && agendamientoForm.get('serviceID').touched" class="text-danger">
-          El servicio es obligatorio.
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="serviceID" class="form-label">Servicio</label>
+            <select (change)="getEspecialistas($event.target.value)" class="form-select" id="serviceID" formControlName="serviceID">
+              <option value="">Seleccione un servicio</option>
+                <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.description }}</option>
+            </select>
+            <div *ngIf="agendamientoForm.get('serviceID').invalid && agendamientoForm.get('serviceID').touched" class="text-danger">
+              El servicio es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="specialistID" class="form-label">Especialista</label>
+            <select (change)="getDisponibilidad()" class="form-select" id="specialistID" formControlName="specialistID">
+              <option value="">Seleccione el especialista que desea</option>
+              <option *ngFor="let especialista of especialistas.data" [value]="especialista.id">{{ especialista.firstName }} {{ especialista.lastName }}</option>
+            </select>
+            <div *ngIf="agendamientoForm.get('specialistID').invalid && agendamientoForm.get('specialistID').touched" class="text-danger">
+              El especialista es obligatorio.
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="mb-3">
-        <label for="specialistID" class="form-label">Especialista</label>
-        <select class="form-select" id="specialistID" formControlName="specialistID">
-          <option value="">Seleccione el especialista que desea</option>
-          <option value="1">Oscar Giovany Rojas</option>
-          <option value="2">Fernando Bejarano</option>
-        </select>
-        <div *ngIf="agendamientoForm.get('specialistID').invalid && agendamientoForm.get('specialistID').touched" class="text-danger">
-          El especialista es obligatorio.
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="appointmentTime" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="appointmentTime" formControlName="appointmentTime">
+            <div *ngIf="agendamientoForm.get('appointmentTime').invalid && agendamientoForm.get('appointmentTime').touched" class="text-danger">
+              La hora es obligatoria.
+            </div>
+          </div>
         </div>
+        <div class="col"></div>
       </div>
-  
-    <div class="mb-3">
-        <label for="dateAppointment" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment" [min]="today">
-        <div *ngIf="agendamientoForm.get('dateAppointment').invalid && agendamientoForm.get('dateAppointment').touched" class="text-danger">
-          La fecha es obligatoria.
-        </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="agendamientoForm.invalid" >Agendar cita</button>
       </div>
-
-      <div class="mb-3">
-        <label for="appointmentTime" class="form-label">Hora</label>
-        <input type="time" class="form-control" id="appointmentTime" formControlName="appointmentTime">
-        <div *ngIf="agendamientoForm.get('appointmentTime').invalid && agendamientoForm.get('appointmentTime').touched" class="text-danger">
-          La hora es obligatoria.
-        </div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="phone" class="form-label">Teléfono</label>
-        <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Tu teléfono">
-        <div *ngIf="agendamientoForm.get('phone').invalid && agendamientoForm.get('phone').touched" class="text-danger">
-          El teléfono es obligatorio y debe ser un número de 10 dígitos.
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="agendamientoForm.invalid" >Agendar cita</button>
     </form>
     <app-agendamiento-modal #modal></app-agendamiento-modal>
 </div>

@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+/* Sidebar styles */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+#wrapper {
+    display: flex;
+    align-items: stretch;
+}
+  
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: #7386d5;
+  background: #fff;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+.colorAgenda{
+  background-color: #3fb5ae !important;
+}

@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgendamientoModalComponent } from './agendamiento-modal/agendamiento-modal.component';
 import { HeaderComponent } from './header/header.component';
 import { CrearEstablecimientoComponent } from './establecimiento/crear-establecimiento/crear-establecimiento.component';
+import { EspecialistaComponent } from './especialista/especialista.component';
+import { ListaEspecialistasComponent } from './especialista/lista-especialistas/lista-especialistas.component';
+import { AgendaEspecialistaComponent } from './especialista/agenda-especialista/agenda-especialista.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { CrearEstablecimientoComponent } from './establecimiento/crear-estableci
     AgendamientoComponent,
     AgendamientoModalComponent,
     HeaderComponent,
-    CrearEstablecimientoComponent
+    CrearEstablecimientoComponent,
+    EspecialistaComponent,
+    ListaEspecialistasComponent,
+    AgendaEspecialistaComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class AgendamientoServiceService {
 
-  private apiUrl = 'https://rcapruebas.unad.edu.co:8002/agendamiento-api/api/bookings';  // URL de tu backend
+  private apiUrl = 'https://rcapruebas.unad.edu.co:8002/agendamiento-api/api/';  // URL de tu backend
 
   constructor(private http: HttpClient) { }
 
   // Método para crear una cita
   crearCita(cita: any): Observable<any> {
-    return this.http.post(this.apiUrl, cita);
+    return this.http.post(this.apiUrl+"bookings", cita);
+  }
+  getAgendaEspecialista(especialistaId: string): Observable<any> {
+    return this.http.get(this.apiUrl+"getschedulebyspecialist/"+especialistaId);
   }
 }

@@ -30,7 +30,7 @@ export class CrearEstablecimientoComponent implements OnInit {
   onSubmit(): void {
     if (this.establecimientoForm.valid) {
       // Lógica para enviar el formulario
-      console.log(this.establecimientoForm.value);
+      //console.log(this.establecimientoForm.value);
       const establecimiento = {
         "name": this.establecimientoForm.value.nombreEstablecimiento,
         "nitRut": this.establecimientoForm.value.rut,
@@ -49,7 +49,7 @@ export class CrearEstablecimientoComponent implements OnInit {
       };
       this.establecimientoService.crearEstablecimiento(establecimiento).subscribe(
         response => {
-          console.log('Establecimiento creado:', response);
+          //console.log('Establecimiento creado:', response);
           this.modal.openModal(response.message);
         },
         error => {

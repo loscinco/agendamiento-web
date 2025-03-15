@@ -12,4 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
 }

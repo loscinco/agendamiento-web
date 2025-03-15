@@ -11,7 +11,11 @@ export class EstablecimientoService {
   constructor(private http: HttpClient) { }
 
   // Método para crear un establecimiento
-    crearEstablecimiento(cita: any): Observable<any> {
-      return this.http.post(this.apiUrl, cita);
-    }
+  crearEstablecimiento(cita: any): Observable<any> {
+    return this.http.post(this.apiUrl, cita);
+  }
+  
+  getServicios(): Observable<any> {
+    return this.http.get('https://rcapruebas.unad.edu.co:8002/establishments/businessservices/getservices/');
+  }
 }

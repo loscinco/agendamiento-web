@@ -1,11 +1,51 @@
 <app-header></app-header>
-<div class="container">
-    <div class="row">
-        <router-outlet></router-outlet>
-        <div class="col"></div>
-        <div class="col-7">
-            <router-outlet></router-outlet>
-        </div>
-        <div class="col"></div>
+<div class="d-flex" id="wrapper">
+  <nav id="sidebar" class="bg-light border-right">
+    <div class="sidebar-header">
+      <h3>Agendifive</h3>
     </div>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a routerLink="/agendamiento" routerLinkActive="active" class="nav-link link-dark">
+          <i class="bi bi-calendar-check me-2" width="16" height="16"></i>
+          Crear Agenda
+        </a>
+      </li>
+      <li>
+        <a routerLink="/crear-establecimiento" routerLinkActive="active" class="nav-link link-dark">
+          <i class="bi bi-building me-2" width="16" height="16"></i>
+          Crear Establecimiento
+        </a>
+      </li>
+      <li>
+        <a routerLink="/especialista" routerLinkActive="active" class="nav-link link-dark">
+          <i class="bi bi-person-plus me-2" width="16" height="16"></i>
+          Registrar Especialista
+        </a>
+      </li>
+      <li>
+        <a routerLink="/lista-especialistas" routerLinkActive="active" class="nav-link link-dark">
+          <i class="bi bi-people me-2" width="16" height="16"></i>
+          Consultar Especialistas
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>Hans</strong>
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="content" class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
 </div>

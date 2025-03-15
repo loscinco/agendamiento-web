@@ -1,88 +1,116 @@
+<br/>
+<br/>
 <div class="container">
     <h2>Creación de Establecimiento</h2>
+    <br/>
     <form [formGroup]="establecimientoForm" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label for="tipoEstablecimiento" class="form-label">Tipo de Establecimiento</label>
-        <select class="form-select" id="tipoEstablecimiento" formControlName="tipoEstablecimiento">
-            <option value="">Seleccione tipo establecimiento</option>
-            <option value="1">Barbería</option>
-            <option value="2">Medicina</option>
-            <option value="3">Lavadero de carros</option>
-        </select>
-        <div *ngIf="establecimientoForm.get('tipoEstablecimiento').invalid && establecimientoForm.get('tipoEstablecimiento').touched" class="text-danger">
-          El tipo de establecimiento es obligatorio.
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="tipoEstablecimiento" class="form-label">Tipo de Establecimiento</label>
+            <select class="form-select" id="tipoEstablecimiento" formControlName="tipoEstablecimiento">
+                <option value="">Seleccione tipo establecimiento</option>
+                <option value="1">Barbería</option>
+                <option value="2">Medicina</option>
+                <option value="3">Lavadero de carros</option>
+            </select>
+            <div *ngIf="establecimientoForm.get('tipoEstablecimiento').invalid && establecimientoForm.get('tipoEstablecimiento').touched" class="text-danger">
+              El tipo de establecimiento es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="rut" class="form-label">RUT</label>
+            <input type="text" class="form-control" id="rut" formControlName="rut" placeholder="Rut">
+            <div *ngIf="establecimientoForm.get('rut').invalid && establecimientoForm.get('rut').touched" class="text-danger">
+              El RUT es obligatorio y debe tener un formato válido.
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="mb-3">
-        <label for="rut" class="form-label">RUT</label>
-        <input type="text" class="form-control" id="rut" formControlName="rut">
-        <div *ngIf="establecimientoForm.get('rut').invalid && establecimientoForm.get('rut').touched" class="text-danger">
-          El RUT es obligatorio y debe tener un formato válido.
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="nombreEstablecimiento" class="form-label">Nombre del Establecimiento</label>
+            <input type="text" class="form-control" id="nombreEstablecimiento" formControlName="nombreEstablecimiento" placeholder="Nombre del establecimiento">
+            <div *ngIf="establecimientoForm.get('nombreEstablecimiento').invalid && establecimientoForm.get('nombreEstablecimiento').touched" class="text-danger">
+              El nombre es obligatorio y debe tener al menos 3 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="tipoPlan" class="form-label">Tipo de Plan</label>
+            <select class="form-select" id="tipoPlan" formControlName="tipoPlan">
+                <option value="">Seleccione tipo plan</option>
+                <option value="1">Basico</option>
+                <option value="2">Intermedio</option>
+                <option value="3">Premium</option>
+            </select>
+            <div *ngIf="establecimientoForm.get('tipoPlan').invalid && establecimientoForm.get('tipoPlan').touched" class="text-danger">
+              El tipo de plan es obligatorio.
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="mb-3">
-        <label for="nombreEstablecimiento" class="form-label">Nombre del Establecimiento</label>
-        <input type="text" class="form-control" id="nombreEstablecimiento" formControlName="nombreEstablecimiento">
-        <div *ngIf="establecimientoForm.get('nombreEstablecimiento').invalid && establecimientoForm.get('nombreEstablecimiento').touched" class="text-danger">
-          El nombre es obligatorio y debe tener al menos 3 caracteres.
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Dirección">
+            <div *ngIf="establecimientoForm.get('direccion').invalid && establecimientoForm.get('direccion').touched" class="text-danger">
+              La dirección es obligatoria.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <select class="form-select" id="ciudad" formControlName="ciudad">
+                <option value="">Seleccione ciudad</option>
+                <option value="1">Barranquilla</option>
+                <option value="2">Bogotá</option>
+                <option value="3">Bucaramanga</option>
+                <option value="4">Cali</option>
+                <option value="5">Medellin</option>
+            </select>
+            <div *ngIf="establecimientoForm.get('ciudad').invalid && establecimientoForm.get('ciudad').touched" class="text-danger">
+              La ciudad es obligatoria.
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="mb-3">
-        <label for="tipoPlan" class="form-label">Tipo de Plan</label>
-        <select class="form-select" id="tipoPlan" formControlName="tipoPlan">
-            <option value="">Seleccione tipo plan</option>
-            <option value="1">Basico</option>
-            <option value="2">Intermedio</option>
-            <option value="3">Premium</option>
-        </select>
-        <div *ngIf="establecimientoForm.get('tipoPlan').invalid && establecimientoForm.get('tipoPlan').touched" class="text-danger">
-          El tipo de plan es obligatorio.
+      <br/>
+      <div class="row g-3">
+        <div class="col">
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono" placeholder="Telefono">
+            <div *ngIf="establecimientoForm.get('telefono').invalid && establecimientoForm.get('telefono').touched" class="text-danger">
+              El teléfono es obligatorio y debe ser un número de 10 dígitos.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            </div>
+            <div *ngIf="establecimientoForm.get('email').invalid && establecimientoForm.get('email').touched" class="text-danger">
+              El email es obligatorio y debe tener un formato válido.
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div class="mb-3">
-        <label for="direccion" class="form-label">Dirección</label>
-        <input type="text" class="form-control" id="direccion" formControlName="direccion">
-        <div *ngIf="establecimientoForm.get('direccion').invalid && establecimientoForm.get('direccion').touched" class="text-danger">
-          La dirección es obligatoria.
-        </div>
+      <br/>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="establecimientoForm.invalid">Crear Establecimiento</button>
       </div>
-  
-      <div class="mb-3">
-        <label for="ciudad" class="form-label">Ciudad</label>
-        <select class="form-select" id="ciudad" formControlName="ciudad">
-            <option value="">Seleccione ciudad</option>
-            <option value="1">Barranquilla</option>
-            <option value="2">Bogotá</option>
-            <option value="3">Bucaramanga</option>
-            <option value="4">Cali</option>
-            <option value="5">Medellin</option>
-        </select>
-        <div *ngIf="establecimientoForm.get('ciudad').invalid && establecimientoForm.get('ciudad').touched" class="text-danger">
-          La ciudad es obligatoria.
-        </div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="text" class="form-control" id="telefono" formControlName="telefono">
-        <div *ngIf="establecimientoForm.get('telefono').invalid && establecimientoForm.get('telefono').touched" class="text-danger">
-          El teléfono es obligatorio y debe ser un número de 10 dígitos.
-        </div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email">
-        <div *ngIf="establecimientoForm.get('email').invalid && establecimientoForm.get('email').touched" class="text-danger">
-          El email es obligatorio y debe tener un formato válido.
-        </div>
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="establecimientoForm.invalid">Crear Establecimiento</button>
     </form>
     <app-agendamiento-modal #modal></app-agendamiento-modal>
   </div>
