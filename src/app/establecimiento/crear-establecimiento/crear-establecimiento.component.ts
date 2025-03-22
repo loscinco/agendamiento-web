@@ -50,7 +50,8 @@ export class CrearEstablecimientoComponent implements OnInit {
       this.establecimientoService.crearEstablecimiento(establecimiento).subscribe(
         response => {
           //console.log('Establecimiento creado:', response);
-          this.modal.openModal(response.message);
+          this.modal.openModal(response.message, false);
+          this.establecimientoForm.reset();
         },
         error => {
           console.error('Error al agendar cita:', error);

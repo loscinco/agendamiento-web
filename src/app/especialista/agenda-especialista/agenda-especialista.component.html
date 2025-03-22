@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Agenda del Especialista {{ especialistaName }}</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Nombre del Cliente</th>
+          <th>Telefono cliente</th>
+          <th>Email cliente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let turno of agenda.data">
+          <td>{{ turno.appointmentDate }}</td>
+          <td>{{ turno.appointmentTime }}</td>
+          <td>{{ turno.fullName }}</td>
+          <td>{{ turno.phone }}</td>
+          <td>{{ turno.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
+    <button type="button" class="btn btn-primary" value="Volver" (click)="volver()">Volver</button>
+</div>

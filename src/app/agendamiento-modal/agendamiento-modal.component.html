@@ -1,18 +1,55 @@
 <!-- agendamiento-modal.component.html -->
 <div class="modal fade" id="citaModal" tabindex="-1" aria-labelledby="citaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="citaModalLabel">AgendiFive</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          {{response}}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Cerrar</button>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="citaModalLabel">AgendiFive</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        {{response}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
   
+<div class="modal fade" id="citaModal2" tabindex="-1" role="dialog" aria-labelledby="citaModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="citaModalLabel2">Cita Existente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="row">
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title">Cita Anterior</h5>
+                <p class="card-text"><strong>Cliente:</strong> {{ citaAnterior?.fullName }}</p>
+                <p class="card-text"><strong>Fecha:</strong> {{ citaAnterior?.appointmentDate }}</p>
+                <p class="card-text"><strong>Hora:</strong> {{ citaAnterior?.appointmentTime }}</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title">Cita Actual</h5>
+                <p class="card-text"><strong>Cliente:</strong> {{ citaActual?.nameClient }}</p>
+                <p class="card-text"><strong>Fecha:</strong> {{ citaActual?.dateAppointment }}</p>
+                <p class="card-text"><strong>Hora:</strong> {{ citaActual?.appointmentTime }}:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3">¿Desea reemplazar esta cita por la nueva o mantener la cita existente?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="replazarCita" class="btn btn-danger" (click)="replazarCita()">Reemplazar Cita</button>
+        <button type="button" id="mantenerCita" class="btn btn-secondary" (click)="closeModal()">Mantener Cita</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,12 +13,12 @@ import { EstablecimientoService } from '../services/establecimiento/establecimie
 export class AgendamientoComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal: AgendamientoModalComponent;
   agendamientoForm: FormGroup;
-  horas = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
   today: string;
   especialistas: any[] = [];
   servicios: any[] = [];
   selectedService: any;
   isDateSelected: boolean = false;
+  horasDisponibles: string[] = [];
   
   constructor(private fb: FormBuilder, 
     private AgendamientoService : AgendamientoServiceService, 
@@ -48,23 +48,32 @@ export class AgendamientoComponent implements OnInit {
 
   onSubmit(): void {
     if (this.agendamientoForm.valid) {
-      
+      const nombreEspecialista = this.agendamientoForm.value.specialistID.firstName + ' ' + this.agendamientoForm.value.specialistID.lastName;
+      const message = `Hola ${this.agendamientoForm.value.nameClient}, tu cita ha sido agendada exitosamente. 
+          Te esperamos el ${this.agendamientoForm.value.dateAppointment} a las ${this.agendamientoForm.value.appointmentTime}.
+          con el especialista ${nombreEspecialista}`;
       const cita = {
         nameClient: this.agendamientoForm.value.nameClient,
         email: this.agendamientoForm.value.email,
         phone: this.agendamientoForm.value.phone,
-        specialistID: this.agendamientoForm.value.specialistID,
+        specialistID: this.agendamientoForm.value.specialistID.id,
         serviceID: this.agendamientoForm.value.serviceID,
         dateAppointment: this.agendamientoForm.value.dateAppointment,
         appointmentTime: this.agendamientoForm.value.appointmentTime,
-        serviceDuration: this.selectedService.duration
+        serviceDuration: this.selectedService.duration,
+        message: message
       };
-      console.log('Formulario Enviado', cita);
+      //console.log('Formulario Enviado', cita);
       // Llamar al servicio para crear la cita
       this.AgendamientoService.crearCita(cita).subscribe(
         response => {
-          console.log('Cita agendada:', response);
-          this.modal.openModal(response.returnStatus.businessMessage);
+          //console.log('Cita agendada:', response);
+          if(response.returnStatus.status == 'OK'){
+            this.modal.openModal(response.returnStatus.businessMessage, false);
+          }else{
+            this.modal.openModal(response.returnStatus.businessMessage, true, response.data[0], cita);
+          }
+          this.agendamientoForm.reset();
         },
         error => {
           console.error('Error al agendar cita:', error);
@@ -78,10 +87,11 @@ export class AgendamientoComponent implements OnInit {
   getDisponibilidad(): void {
     //console.log('Llama disponibilidad');
     const date = this.agendamientoForm.value.dateAppointment;
-    const specialistID = this.agendamientoForm.value.specialistID;
+    const specialistID = this.agendamientoForm.value.specialistID.id;
     this.especialistaService.getDisponibilidad(specialistID, this.selectedService.duration, date).subscribe(
       response => {
-        //console.log('Disponibilidad:', response);
+        console.log('Disponibilidad:', response);
+        this.horasDisponibles = response.availability;
       },
       error => {
         console.error('Error al obtener disponibilidad:', error);
@@ -97,6 +107,10 @@ export class AgendamientoComponent implements OnInit {
         this.especialistas = response;
       }
     );
+  }
+
+  selectHora(hora: string): void {
+    this.agendamientoForm.patchValue({ appointmentTime: hora }); // Actualiza el valor del formulario
   }
 
   onDateChange(date: string): void {

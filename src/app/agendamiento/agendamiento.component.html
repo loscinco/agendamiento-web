@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Agendamiento de Citas</h2>
   <br/>
-    <form [formGroup]="agendamientoForm" (ngSubmit)="onSubmit(); modal.openModal()">
+    <form [formGroup]="agendamientoForm" (ngSubmit)="onSubmit();">
       <div class="row g-3">
         <div class="col">
           <div class="mb-3">
@@ -65,7 +65,7 @@
             <label for="specialistID" class="form-label">Especialista</label>
             <select (change)="getDisponibilidad()" class="form-select" id="specialistID" formControlName="specialistID">
               <option value="">Seleccione el especialista que desea</option>
-              <option *ngFor="let especialista of especialistas.data" [value]="especialista.id">{{ especialista.firstName }} {{ especialista.lastName }}</option>
+              <option *ngFor="let especialista of especialistas.data" [ngValue]="especialista">{{ especialista.firstName }} {{ especialista.lastName }}</option>
             </select>
             <div *ngIf="agendamientoForm.get('specialistID').invalid && agendamientoForm.get('specialistID').touched" class="text-danger">
               El especialista es obligatorio.
@@ -78,7 +78,17 @@
         <div class="col">
           <div class="mb-3">
             <label for="appointmentTime" class="form-label">Hora</label>
-            <input type="time" class="form-control" id="appointmentTime" formControlName="appointmentTime">
+            <div class="d-flex flex-wrap">
+              <button 
+                *ngFor="let hora of horasDisponibles" 
+                type="button" 
+                class="btn btn-outline-primary m-1" 
+                [class.active]="hora === agendamientoForm.value.appointmentTime"
+                [disabled]="hora.status === 'ocupado'"
+                (click)="selectHora(hora.startTime)">
+                {{ hora.startTime }}
+              </button>
+            </div>
             <div *ngIf="agendamientoForm.get('appointmentTime').invalid && agendamientoForm.get('appointmentTime').touched" class="text-danger">
               La hora es obligatoria.
             </div>

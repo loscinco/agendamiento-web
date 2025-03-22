@@ -1,0 +1,25 @@
+<br/>
+<br/>
+<div class="container">
+    <h2>Lista de Especialistas</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Agenda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let especialista of especialistas.data">
+          <td>{{ especialista.firstName }}</td>
+          <td>{{ especialista.lastName }}</td>
+          <td>{{ especialista.email }}</td>
+          <td>{{ especialista.phone }}</td>
+            <th><a [routerLink]="['/agenda-especialista', especialista.id, especialista?.firstName]">Ver</a></th>
+        </tr>
+      </tbody>
+    </table>
+</div>

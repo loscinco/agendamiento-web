@@ -18,4 +18,8 @@ export class AgendamientoServiceService {
   getAgendaEspecialista(especialistaId: string): Observable<any> {
     return this.http.get(this.apiUrl+"getschedulebyspecialist/"+especialistaId);
   }
+
+  reeplazarCita(cita: any): Observable<any> {
+    return this.http.post(this.apiUrl+"reschedule", cita);
+  }
 }
