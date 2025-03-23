@@ -80,9 +80,9 @@
             <label for="appointmentTime" class="form-label">Hora</label>
             <div class="d-flex flex-wrap">
               <button 
-                *ngFor="let hora of horasDisponibles" 
+                *ngFor="let hora of horasDisponibles let i = index" 
                 type="button" 
-                id="{{ hora.startTime }}"
+                id="{{i}}"
                 class="btn btn-outline-primary m-1" 
                 [class.active]="hora === agendamientoForm.value.appointmentTime"
                 [disabled]="hora.status === 'ocupado'"
