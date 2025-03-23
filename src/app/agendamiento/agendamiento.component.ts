@@ -92,6 +92,9 @@ export class AgendamientoComponent implements OnInit {
       response => {
         console.log('Disponibilidad:', response);
         this.horasDisponibles = response.availability;
+        if(this.horasDisponibles == null){
+          this.modal.openModal('No hay disponibilidad para la fecha seleccionada', false);
+        }
       },
       error => {
         console.error('Error al obtener disponibilidad:', error);
@@ -117,5 +120,13 @@ export class AgendamientoComponent implements OnInit {
     // Verifica si se seleccionó una fecha válida
     this.isDateSelected = !!date; // Si hay una fecha, habilita el campo "Especialista"
   }
+
+  changeDate(): void {
+    this.agendamientoForm.patchValue({
+      serviceID: '',
+      specialistID: ''
+    });
+  }
+
 
 }

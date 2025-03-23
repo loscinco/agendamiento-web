@@ -30,7 +30,7 @@
         <div class="col">
           <div class="mb-3">
             <label for="dateAppointment" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment" [min]="today">
+            <input (change)="changeDate()" type="date" class="form-control" id="dateAppointment" formControlName="dateAppointment" [min]="today">
             <div *ngIf="agendamientoForm.get('dateAppointment').invalid && agendamientoForm.get('dateAppointment').touched" class="text-danger">
               La fecha es obligatoria.
             </div>
