@@ -82,6 +82,7 @@
               <button 
                 *ngFor="let hora of horasDisponibles" 
                 type="button" 
+                id="hora.startTime"
                 class="btn btn-outline-primary m-1" 
                 [class.active]="hora === agendamientoForm.value.appointmentTime"
                 [disabled]="hora.status === 'ocupado'"
