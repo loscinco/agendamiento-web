@@ -19,6 +19,7 @@ export class AgendamientoComponent implements OnInit {
   selectedService: any;
   isDateSelected: boolean = false;
   horasDisponibles: string[] = [];
+  valor: string;
   
   constructor(private fb: FormBuilder, 
     private AgendamientoService : AgendamientoServiceService, 
@@ -41,7 +42,7 @@ export class AgendamientoComponent implements OnInit {
     this.establecimientoService.getServicios().subscribe(
       response => {
         this.servicios = response.data;
-        //console.log('Servicios:', response);
+        console.log('Servicios:', response);
       }
     );
   }
@@ -90,7 +91,7 @@ export class AgendamientoComponent implements OnInit {
     const specialistID = this.agendamientoForm.value.specialistID.id;
     this.especialistaService.getDisponibilidad(specialistID, this.selectedService.duration, date).subscribe(
       response => {
-        console.log('Disponibilidad:', response);
+        //console.log('Disponibilidad:', response);
         this.horasDisponibles = response.availability;
         if(this.horasDisponibles == null){
           this.modal.openModal('No hay disponibilidad para la fecha seleccionada', false);
@@ -104,6 +105,7 @@ export class AgendamientoComponent implements OnInit {
 
   getEspecialistas(servicioId): void {
     this.selectedService = this.servicios.find(service => service.id == this.agendamientoForm.value.serviceID);
+    this.valor = '$'+this.selectedService.price;
     this.especialistaService.getEspecialistasByIdandService(4, servicioId).subscribe(
       response => {
         //console.log('Especialistas:', response);

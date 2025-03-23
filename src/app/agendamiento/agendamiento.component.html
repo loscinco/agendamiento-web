@@ -50,7 +50,7 @@
       <div class="row g-3">
         <div class="col">
           <div class="mb-3">
-            <label for="serviceID" class="form-label">Servicio</label>
+            <label for="serviceID" class="form-label">Servicio: {{ valor }}</label>
             <select (change)="getEspecialistas($event.target.value)" class="form-select" id="serviceID" formControlName="serviceID">
               <option value="">Seleccione un servicio</option>
                 <option *ngFor="let servicio of servicios" [value]="servicio.id">{{ servicio.description }}</option>
