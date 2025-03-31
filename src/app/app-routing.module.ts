@@ -5,6 +5,7 @@ import { AgendamientoComponent } from './agendamiento/agendamiento.component';
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { ListaEspecialistasComponent } from './especialista/lista-especialistas/lista-especialistas.component';
 import { AgendaEspecialistaComponent } from './especialista/agenda-especialista/agenda-especialista.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'crear-establecimiento', component: CrearEstablecimientoComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'especialista', component: EspecialistaComponent },
   { path: 'lista-especialistas', component: ListaEspecialistasComponent },
   { path: 'agenda-especialista/:id/:name', component: AgendaEspecialistaComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/agendamiento', pathMatch: 'full' }
 ];
 

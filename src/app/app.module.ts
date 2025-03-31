@@ -11,6 +11,7 @@ import { CrearEstablecimientoComponent } from './establecimiento/crear-estableci
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { ListaEspecialistasComponent } from './especialista/lista-especialistas/lista-especialistas.component';
 import { AgendaEspecialistaComponent } from './especialista/agenda-especialista/agenda-especialista.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AgendaEspecialistaComponent } from './especialista/agenda-especialista/
     CrearEstablecimientoComponent,
     EspecialistaComponent,
     ListaEspecialistasComponent,
-    AgendaEspecialistaComponent
+    AgendaEspecialistaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
