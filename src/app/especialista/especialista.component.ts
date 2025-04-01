@@ -19,7 +19,7 @@ export class EspecialistaComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required],],
       phone: ['', [Validators.required],],
-      establishmentId: ['1'],
+      establishmentId: ['4'],
       schedules: this.fb.group({
         dayOfWeek: ['', Validators.required],
         startTime: ['', Validators.required],

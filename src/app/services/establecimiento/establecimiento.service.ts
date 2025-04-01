@@ -11,8 +11,8 @@ export class EstablecimientoService {
   constructor(private http: HttpClient) { }
 
   // Método para crear un establecimiento
-  crearEstablecimiento(cita: any): Observable<any> {
-    return this.http.post(this.apiUrl, cita);
+  crearEstablecimiento(establecimiento: any): Observable<any> {
+    return this.http.post(this.apiUrl, establecimiento);
   }
   
   getServicios(): Observable<any> {
